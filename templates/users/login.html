@@ -7,15 +7,32 @@
 {% block container %}
 
     {% if error %}
-        <p style="color: red;">{{ error }}</p>
+        <p class="alert alert-danger">{{ error }}</p>
     {% endif %}
 
     <form method="POST" action="{% url 'login' %}">
         <!-- Incluye un input con un token único por sesión  -->
         {% csrf_token %} 
-        <input type="text" placeholder="Username" name='username'>
-        <input type="password" placeholder="Password" name="password">
-        <button type="submit">Sign in</button>
+        <div class="form-group">
+            <input class="form-control" type="text" placeholder="Username" name='username'>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="password" placeholder="Password" name="password">
+        </div>
+        <button class="btn btn-primary btn-block btn-m5" type="submit">
+            Sign in
+        </button>
+        <div class="form-group" style="color: #8e8e8e;">
+            <div class="div" style="display: inline;">-------</div>
+            <div class="div" style="align-items: center; display: inline;">O</div>
+            <div class="div" style="display: inline;">--------</div>
+        </div>
+        <div class="form-group" style="color: #385185;">
+            <div class="div" style="text-align: center;">Iniciar sesión con Facebook</div>
+        </div>
+        <div class="form-group" style="color: #385185;">
+            <div class="div" style="text-align: center;">¿Olvidaste tu contraseña?</div>
+        </div>
     </form>
 
 {% endblock %}
