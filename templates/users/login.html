@@ -1,11 +1,12 @@
 {% extends 'users/base.html' %}
+{% load static %}
 
 {% block head_content %}
     <title>Fitgram sign in</title>
 {% endblock %}
 
 {% block container %}
-
+    
     {% if error %}
         <p class="alert alert-danger">{{ error }}</p>
     {% endif %}
