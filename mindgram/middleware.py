@@ -18,11 +18,13 @@ class ProfileCompletionMiddleware:
     def __call__(self, request):
         #Verify that there is an active session 
         if not request.user.is_anonymous:
-            profile = request.user.profile
-            if not profile.picture or not profile.biography:
-                #this is the same as if request.path != users/me/profile and users/logout
-                if request.path not in [reverse('update_profile'), reverse('logout')]: 
-                    return redirect('update_profile')
+            #allows staff not to have biography and picture 
+            if not request.user.is_staff:
+                profile = request.user.profile
+                if not profile.picture or not profile.biography:
+                    #this is the same as if request.path != users/me/profile and users/logout
+                    if request.path not in [reverse('update_profile'), reverse('logout')]: 
+                        return redirect('update_profile')
 
         responde = self.get_response(request)
 
